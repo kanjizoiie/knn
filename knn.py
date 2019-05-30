@@ -75,6 +75,12 @@ if __name__ == '__main__':
     # Split data into a number of chunks
     df_split = np.array_split(data_frame, number_of_cross_validations)
 
+    sample_frame = data_frame.sample(200)
+    sample_frame = sample_frame.iloc[:, 0:48]
+    print(sample_frame)
+    scatter_matrix(sample_frame, alpha=0.2, figsize=(10, 10))
+    plt.show()
+
     for i in range(len(df_split)):
         print("Running: Split", i)
         copied_arr = df_split.copy()
