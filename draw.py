@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from pandas.plotting import scatter_matrix
+from pandas.plotting import scatter_matrix, radviz
 import pandas
 from sklearn.utils import shuffle
 
@@ -7,9 +7,12 @@ from sklearn.utils import shuffle
 data_frame = pandas.read_csv("spambase/spambase.csv")
 # Randomize the dataframe
 data_frame = shuffle(data_frame)
-sample_frame = data_frame.sample(200)
-sample_frame_words = sample_frame.iloc[:, ::3]
-print(sample_frame_words)
+sample_frame = data_frame.sample(frac=1)
+sample_frame = sample_frame.iloc[:, ::1]
 
-scatter_matrix(sample_frame_words, alpha=0.2)
+print(sample_frame)
+radviz(sample_frame, "spam")
 plt.show()
+
+# scatter_matrix(sample_frame, alpha=0.2)
+# plt.show()
